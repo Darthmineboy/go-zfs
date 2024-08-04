@@ -7,6 +7,7 @@ import (
 	"io"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // ZFS dataset types, which can indicate if a dataset is a filesystem, snapshot, or volume.
@@ -35,6 +36,7 @@ type Dataset struct {
 	Usedbydataset uint64
 	Quota         uint64
 	Referenced    uint64
+	Creation      time.Time
 }
 
 // InodeType is the type of inode as reported by Diff.

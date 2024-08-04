@@ -10,6 +10,7 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/google/uuid"
 )
@@ -91,6 +92,17 @@ func setUint(field *uint64, value string) error {
 	return nil
 }
 
+func setTime(field *time.Time, value string) error {
+	var v time.Time
+	unixTime, err := strconv.ParseInt(value, 10, 64)
+	if err != nil {
+		return err
+	}
+	v = time.Unix(unixTime, 0)
+	*field = v
+	return nil
+}
+
 func (d *Dataset) parseLine(line []string) error {
 	var err error
 
@@ -131,7 +143,13 @@ func (d *Dataset) parseLine(line []string) error {
 	if err = setUint(&d.Logicalused, line[11]); err != nil {
 		return err
 	}
-	return setUint(&d.Usedbydataset, line[12])
+	if err = setUint(&d.Usedbydataset, line[12]); err != nil {
+		return err
+	}
+	if err = setTime(&d.Creation, line[13]); err != nil {
+		return err
+	}
+	return nil
 }
 
 /*
