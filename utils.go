@@ -129,7 +129,10 @@ func (d *Dataset) parseLine(line []string) error {
 	if err = setUint(&d.Quota, line[8]); err != nil {
 		return err
 	}
-	if err = setUint(&d.Referenced, line[9]); err != nil {
+	if err := setUint(&d.RefQuota, line[9]); err != nil {
+		return err
+	}
+	if err = setUint(&d.Referenced, line[10]); err != nil {
 		return err
 	}
 
@@ -137,16 +140,16 @@ func (d *Dataset) parseLine(line []string) error {
 		return nil
 	}
 
-	if err = setUint(&d.Written, line[10]); err != nil {
+	if err = setUint(&d.Written, line[11]); err != nil {
 		return err
 	}
-	if err = setUint(&d.Logicalused, line[11]); err != nil {
+	if err = setUint(&d.Logicalused, line[12]); err != nil {
 		return err
 	}
-	if err = setUint(&d.Usedbydataset, line[12]); err != nil {
+	if err = setUint(&d.Usedbydataset, line[13]); err != nil {
 		return err
 	}
-	if err = setTime(&d.Creation, line[13]); err != nil {
+	if err = setTime(&d.Creation, line[14]); err != nil {
 		return err
 	}
 	return nil

@@ -35,6 +35,7 @@ type Dataset struct {
 	Logicalused   uint64
 	Usedbydataset uint64
 	Quota         uint64
+	RefQuota      uint64
 	Referenced    uint64
 	Creation      time.Time
 }
