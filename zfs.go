@@ -23,21 +23,23 @@ const (
 // The field definitions can be found in the ZFS manual:
 // https://openzfs.github.io/openzfs-docs/man/7/zfsprops.7.html.
 type Dataset struct {
-	Name          string
-	Origin        string
-	Used          uint64
-	Avail         uint64
-	Mountpoint    string
-	Compression   string
-	Type          string
-	Written       uint64
-	Volsize       uint64
-	Logicalused   uint64
-	Usedbydataset uint64
-	Quota         uint64
-	RefQuota      uint64
-	Referenced    uint64
-	Creation      time.Time
+	Name        string
+	Origin      string
+	Used        uint64
+	Avail       uint64
+	Mountpoint  string
+	Compression string
+	Type        string
+	Written     uint64
+	Volsize     uint64
+	Logicalused uint64
+	// LogicalReferenced the amount of logical space that is directly referenced by the dataset itself, excluding descendants.
+	LogicalReferenced uint64
+	Usedbydataset     uint64
+	Quota             uint64
+	RefQuota          uint64
+	Referenced        uint64
+	Creation          time.Time
 }
 
 // InodeType is the type of inode as reported by Diff.

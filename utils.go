@@ -146,10 +146,13 @@ func (d *Dataset) parseLine(line []string) error {
 	if err = setUint(&d.Logicalused, line[12]); err != nil {
 		return err
 	}
-	if err = setUint(&d.Usedbydataset, line[13]); err != nil {
+	if err = setUint(&d.LogicalReferenced, line[13]); err != nil {
 		return err
 	}
-	if err = setTime(&d.Creation, line[14]); err != nil {
+	if err = setUint(&d.Usedbydataset, line[14]); err != nil {
+		return err
+	}
+	if err = setTime(&d.Creation, line[15]); err != nil {
 		return err
 	}
 	return nil
